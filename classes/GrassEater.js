@@ -102,3 +102,4 @@ module.exports = class GrassEater extends LivingCreature {
     }
 
 }
+
