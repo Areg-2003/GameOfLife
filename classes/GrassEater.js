@@ -1,4 +1,4 @@
-let LivingCreature = require('./LivingCreature')
+let LivingCreature = require('./LivingCreature');
 
 module.exports = class GrassEater extends LivingCreature {
 
@@ -102,4 +102,3 @@ module.exports = class GrassEater extends LivingCreature {
     }
 
 }
-

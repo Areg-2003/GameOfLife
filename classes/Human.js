@@ -1,11 +1,15 @@
-class Human extends LivingCreature {
+let LivingCreature = require("./LivingCreature");
+
+
+
+module.exports = class Human extends LivingCreature {
 
     constructor(x, y, id) {
         super(x, y);
         this.id = id;
         this.energy = 10;
     }
-    
+
     chooseCell(ch){
         this.getNewCoordinates();
         return super.chooseCell(ch);

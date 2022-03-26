@@ -3,7 +3,7 @@ var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 var fs = require('fs');
-const GrassEater = require('../third 1/GrassEater');
+const GrassEater = require('./classes/GrassEater');
 
 app.use(express.static("."));
 
@@ -27,19 +27,36 @@ function generateMatrix(size) {
     return matrix;
 }
 
+var matrix = [];
+
+var grassArr = [];
+var grassEaterArr = [];
+var predatorArr = [];
+var humanArr = [];
+var waterArr = [];
+
+Grass = require('./classes/Grass');
+Grasseater = require('./classes/GrassEater');
+Human = require('./classes/Human');
+Predator = require('./classes/Predator');
+Water = require('./classes/Water');
+
+var size = 50;
+
+function rand(min, max) {
+  return Math.random() * (max - min) + min;
+}
+
+for (let i = 0; i < size; i++) {
+  matrix[i] = [];
+  for (let j = 0; j < size; j++) {
+      matrix[i][j] = Math.floor(rand(0, 5))
+
+  }
+}
+
+
 io.sockets.emit('send matrix', matrix);
-
-grassArr = [];
-grassEaterArr = [];
-predatorArr = [];
-humanArr = [];
-waterArr = [];
-
-Grass = require('./Grass');
-Grasseater = require('./GrassEater');
-Human = require('./Human');
-Predator = require('./Predator');
-Water = require('/Water');
 
 function createObjects(matrix){
 

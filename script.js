@@ -1,10 +1,4 @@
-var matrix = [];
-
-var grassArr = [];
-var grassEaterArr = [];
-var predatorArr = [];
-var humanArr = [];
-var waterArr = [];
+var socket = io();
 
 var side = 30;
 
@@ -43,17 +37,4 @@ function draw() {
     }
 }
 
-function generateMatrix(size) {
-
-    var matrix = [];
-
-    for (var y = 0; y < size; y++) {
-        matrix[y] = [];
-        for (var x = 0; x < size; x++) {
-            var randomElement = random([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 3, 4, 5, 5, 5])
-            matrix[y][x] = randomElement;
-        }
-    }
-
-    return matrix;
-}
+socket.on('send matrix', draw);
