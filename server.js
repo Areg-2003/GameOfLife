@@ -1,9 +1,9 @@
 var express = require('express');
 var app = express();
-var server = require('http').Server(app);
+var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 var fs = require('fs');
-const GrassEater = require('./classes/GrassEater');
+
 
 app.use(express.static("."));
 
@@ -24,19 +24,19 @@ function generateMatrix(size) {
         }
     }
 
-    return matrix;
+    
 }
 
-var matrix = [];
+matrix = [];
 
-var grassArr = [];
-var grassEaterArr = [];
-var predatorArr = [];
-var humanArr = [];
-var waterArr = [];
+grassArr = [];
+ grassEaterArr = [];
+ predatorArr = [];
+ humanArr = [];
+ waterArr = [];
 
 Grass = require('./classes/Grass');
-Grasseater = require('./classes/GrassEater');
+GrassEater = require('./classes/GrassEater');
 Human = require('./classes/Human');
 Predator = require('./classes/Predator');
 Water = require('./classes/Water');
@@ -58,7 +58,7 @@ for (let i = 0; i < size; i++) {
 
 io.sockets.emit('send matrix', matrix);
 
-function createObjects(matrix){
+function createObjects(){
 
     for (let y = 0; y < matrix.length; y++) {
         for (let x = 0; x < matrix[y].length; x++) {
@@ -117,5 +117,5 @@ function action(){
 setInterval(action, 1000)
 
 io.on('connection', function(socket) {
-    createObjects(matrix);
+    createObjects();
 })

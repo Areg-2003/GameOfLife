@@ -20,8 +20,9 @@ module.exports = class Water extends LivingCreature {
 
         if (this.cloud >= 8) {
 
-            var newX = floor(random(0, matrix[0].length));
-            var newY = floor(random(0, matrix.length));
+            var newX =  Math.random() *matrix[0].length;
+            //var newY = floor(random(0, matrix.length));
+            var newY = Math.random() * matrix.length;
 
             var newWater = new Water(newX, newY, this.id);
             waterArr.push(newWater);

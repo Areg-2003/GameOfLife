@@ -30,7 +30,7 @@ module.exports = class Human extends LivingCreature {
 
     mul() {
         var emptyCells = this.chooseCell(0);
-        var newCell = random(emptyCells);
+        var newCell = Math.random() * emptyCells;
 
         if (newCell && this.energy >= 60) {
             var newX = newCell[0];
@@ -45,7 +45,7 @@ module.exports = class Human extends LivingCreature {
 
     move() {
         var emptyCells = this.chooseCell(0);
-        var newCell = random(emptyCells);
+        var newCell = Math.random() * emptyCells;
 
         if (newCell && this.energy > 0) {
             var newX = newCell[0];
@@ -68,7 +68,7 @@ module.exports = class Human extends LivingCreature {
         var foodPredator = this.chooseCell(3);
         var foodWater = this.chooseCell(5);
         var food = foodGrass.concat(foodGrassEater).concat(foodPredator).concat(foodWater);
-        var newCell = random(food);
+        var newCell = Math.random() * food;
 
         if (newCell && this.energy > 0) {
             var newX = newCell[0];
