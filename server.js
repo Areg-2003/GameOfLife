@@ -19,7 +19,7 @@ function generateMatrix(size) {
     for (var y = 0; y < size; y++) {
         matrix[y] = [];
         for (var x = 0; x < size; x++) {
-            var randomElement = random([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 3, 4, 5, 5, 5])
+            var randomElement = random([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 3, 4, 5, 5, 5])
             matrix[y][x] = randomElement;
         }
     }
@@ -30,10 +30,10 @@ function generateMatrix(size) {
 matrix = [];
 
 grassArr = [];
- grassEaterArr = [];
- predatorArr = [];
- humanArr = [];
- waterArr = [];
+grassEaterArr = [];
+predatorArr = [];
+humanArr = [];
+waterArr = [];
 
 Grass = require('./classes/Grass');
 GrassEater = require('./classes/GrassEater');
@@ -114,7 +114,7 @@ function action(){
     io.sockets.emit("send matrix", matrix);
 }
 
-setInterval(action, 1000)
+setInterval(action, 300)
 
 io.on('connection', function(socket) {
     createObjects();

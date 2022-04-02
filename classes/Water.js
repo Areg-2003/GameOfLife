@@ -21,7 +21,6 @@ module.exports = class Water extends LivingCreature {
         if (this.cloud >= 8) {
 
             var newX =  Math.random() *matrix[0].length;
-            //var newY = floor(random(0, matrix.length));
             var newY = Math.random() * matrix.length;
 
             var newWater = new Water(newX, newY, this.id);
@@ -34,7 +33,7 @@ module.exports = class Water extends LivingCreature {
             if (oldId == 1) {
                 this.kill(newX, newY, grassArr);
             } else if (oldId == 2) {
-                // jnjel grassEaterArr
+                this.kill(newX, newY, grassEaterArr);
             }
 
             this.cloud = 0;
@@ -53,7 +52,6 @@ module.exports = class Water extends LivingCreature {
     }
 
     die() {
-        //ifum stugel naev motakayqum jur ka te voch
         if (this.energy <= 0) {
             for (var i in waterArr) {
                 if (this.x == waterArr[i].x && this.y == waterArr[i].y) {
