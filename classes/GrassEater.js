@@ -5,7 +5,7 @@ module.exports = class GrassEater extends LivingCreature {
     constructor(x, y, id) {
         super(x, y);
         this.id = id;
-        this.energy = 8;
+        this.energy = 0;
     }
 
     chooseCell(ch){
@@ -30,14 +30,14 @@ module.exports = class GrassEater extends LivingCreature {
         var emptyCells = this.chooseCell(0);
         var newCell = emptyCells[Math.floor(Math.random()* emptyCells.length)]
 
-        if (newCell && this.energy >= 12) {
+        if (newCell && this.energy >= 8) {
             var newX = newCell[0];
             var newY = newCell[1];
             matrix[newY][newX] = this.id;
 
             var newGrassEater = new GrassEater(newX, newY, this.id);
             grassEaterArr.push(newGrassEater);
-            this.energy = 8;
+            this.energy = 0;
         }
     }
 

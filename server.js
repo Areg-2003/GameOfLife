@@ -4,6 +4,20 @@ var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 var fs = require('fs');
 
+// function onRequest(request, response){
+//     response.writeHead(200, {'Content-Type': 'text/html'});
+//     fs.readFile('index.html', null, function(error, data) {
+//         if(error){
+//             res.writeHead(404);
+//             res.write("File not found");
+//         }
+//         else{
+//             res.write(data);
+//         }
+//     });
+//     return res.end();
+// }
+
 
 app.use(express.static("."));
 
@@ -19,7 +33,7 @@ function generateMatrix(size) {
     for (var y = 0; y < size; y++) {
         matrix[y] = [];
         for (var x = 0; x < size; x++) {
-            var randomElement = random([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 3, 4, 5, 5, 5])
+            var randomElement = random([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 3, 4, 5, 5, 5, 5, 5, 5, 5, 5])
             matrix[y][x] = randomElement;
         }
     }
@@ -50,7 +64,7 @@ function rand(min, max) {
 for (let i = 0; i < size; i++) {
   matrix[i] = [];
   for (let j = 0; j < size; j++) {
-      matrix[i][j] = Math.floor(rand(0, 5))
+      matrix[i][j] = Math.floor(rand(0, 6))
 
   }
 }
@@ -114,7 +128,7 @@ function action(){
     io.sockets.emit("send matrix", matrix);
 }
 
-setInterval(action, 300)
+setInterval(action, 800)
 
 io.on('connection', function(socket) {
     createObjects();

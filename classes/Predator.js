@@ -29,7 +29,7 @@ module.exports = class Predator extends LivingCreature {
 
     mul() {
         var emptyCells = this.chooseCell(0);
-        var newCell = emptyCells[Math.floor(Math.random()* emptyCells.length)]
+        var newCell = emptyCells[Math.floor(Math.random()* emptyCells.length)];
 
         if (newCell && this.energy >= 13) {
             var newX = newCell[0];

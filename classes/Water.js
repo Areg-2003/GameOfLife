@@ -15,28 +15,52 @@ module.exports = class Water extends LivingCreature {
     }
 
     rain() {
+
+        // var emptyCells = this.chooseCell(0);
+        // var newCell = emptyCells[Math.floor(Math.random()* emptyCells.length)];
+
+        // if (newCell && this.energy >= 3) {
+        //     var newX = newCell[0];
+        //     var newY = newCell[1];
+        //     matrix[newY][newX] = this.id;
+
+        //     var newWater = new Water(newX, newY, this.id);
+        //     waterArr.push(newWater);
+        //     this.energy = 0;
+        // }
+
         this.cloud++;
         this.energy--;
 
-        if (this.cloud >= 8) {
+        if (this.cloud >= 8){
 
-            var newX =  Math.random() *matrix[0].length;
-            var newY = Math.random() * matrix.length;
+            while(this.cloud > 0){
 
-            var newWater = new Water(newX, newY, this.id);
-            waterArr.push(newWater);
+                var newX =  Math.random() * matrix[0].length;
+                var newY = Math.random() * matrix.length;
 
-            matrix[newY][newX] = this.id;
+                var newWater = new Water(newX, newY, this.id);
+                waterArr.push(newWater);
 
-            var oldId = matrix[newY][newX];
+                matrix[newY][newX] = this.id;
 
-            if (oldId == 1) {
-                this.kill(newX, newY, grassArr);
-            } else if (oldId == 2) {
-                this.kill(newX, newY, grassEaterArr);
+                var oldId = matrix[newY][newX];
+
+                if (oldId == 1) {
+                    this.kill(newX, newY, grassArr);
+                } 
+                else if (oldId == 2) {
+                    this.kill(newX, newY, grassEaterArr);
+                }
+                else if (oldId == 3) {
+                    this.kill(newX, newY, predatorArr);
+                }
+                else if (oldId == 4) {
+                    this.kill(newX, newY, humanArr);
+                }
+
+                this.cloud--;
             }
-
-            this.cloud = 0;
         }
 
         this.die();
@@ -45,7 +69,7 @@ module.exports = class Water extends LivingCreature {
     kill(x, y, arr) {
         for (var i in arr) {
             if (x == arr[i].x && y == arr[i].y) {
-                arr.splice(i, 1);
+                arr.splice(i, 5);
                 break;
             }
         }
